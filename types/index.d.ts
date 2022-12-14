@@ -265,5 +265,13 @@ interface RNSerialportStatic {
    * @memberof RNSerialportStatic
    */
   hexToUtf16(hex: string): string
+
+  /**
+   * Set read buffer size
+   *
+   * @param {number} bufferSize
+   * @memberof RNSerialportStatic
+   */
+   setReadBufferSize(bufferSize: number): void;
 }
 export var RNSerialport: RNSerialportStatic;

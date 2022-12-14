@@ -85,6 +85,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   private int PARITY       =  UsbSerialInterface.PARITY_NONE;
   private int FLOW_CONTROL = UsbSerialInterface.FLOW_CONTROL_OFF;
   private int BAUD_RATE = 9600;
+  private int readBufferSize = 16 * 1024;
 
 
   private boolean autoConnect = false;
@@ -230,6 +231,11 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     }
 
     this.driver = driver;
+  }
+
+  @ReactMethod
+  public void setReadBufferSize(int bufferSize) {
+    this.readBufferSize = bufferSize;
   }
 
   /********************************************* END **********************************************/
@@ -531,7 +537,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
         serialPort.setStopBits(STOP_BIT);
         serialPort.setParity(PARITY);
         serialPort.setFlowControl(FLOW_CONTROL);
-        serialPort.read(mCallback);
+        serialPort.read(mCallback, this.readBufferSize);
 
         Intent intent = new Intent(ACTION_USB_READY);
         reactContext.sendBroadcast(intent);

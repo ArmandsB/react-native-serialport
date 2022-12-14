@@ -280,7 +280,7 @@ RNSerialport.setReturnedDataType(
 
 _Changes the driver_
 
-[Why it is necessary? Using createUsbSerialDevice method specifying the driver](https://github.com/felHR85/UsbSerial/wiki/3.-Create-UsbSerialDevice#using-createusbserialdevice-method-specifying-the-driver)
+[Why it is necessary? Using createUsbSerialDevice method specifying the driver](https://github.com/ArmandsB/UsbSerial/wiki/3.-Create-UsbSerialDevice#using-createusbserialdevice-method-specifying-the-driver)
 
 > Default: AUTO
 

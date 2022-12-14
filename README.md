@@ -3,7 +3,7 @@
 
 #### This library is for usb serial port communication on android platform 
 
-### This module uses the [felHR85/UsbSerial](https://github.com/felHR85/UsbSerial) library
+### This module uses the [ArmandsB/UsbSerial](https://github.com/ArmandsB/UsbSerial) library
 
 ### Documents
 1. [Download & Installation](https://github.com/melihyarikkaya/react-native-serialport/wiki/Download-&-Installation)  
