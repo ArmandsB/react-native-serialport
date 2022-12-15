@@ -235,7 +235,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void setReadBufferSize(int bufferSize) {
-    this.readBufferSize = bufferSize;
+    readBufferSize = bufferSize;
   }
 
   /********************************************* END **********************************************/
@@ -537,7 +537,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
         serialPort.setStopBits(STOP_BIT);
         serialPort.setParity(PARITY);
         serialPort.setFlowControl(FLOW_CONTROL);
-        serialPort.read(mCallback, this.readBufferSize);
+        serialPort.read(mCallback, readBufferSize);
 
         Intent intent = new Intent(ACTION_USB_READY);
         reactContext.sendBroadcast(intent);
