@@ -17,6 +17,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableNativeArray;
 
+import android.os.Build;
 import android.util.Base64;
 
 import java.util.ArrayList;
@@ -556,7 +557,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
       return;
 
     int pendingFlags;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    if (Build.VERSION.SDK_INT >= 23) {
       pendingFlags = PendingIntent.FLAG_IMMUTABLE;
     } else {
       pendingFlags = 0;
