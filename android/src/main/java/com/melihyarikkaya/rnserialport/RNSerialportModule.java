@@ -558,7 +558,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
 
     int pendingFlags;
     if (Build.VERSION.SDK_INT >= 23) {
-      pendingFlags = PendingIntent.FLAG_IMMUTABLE;
+      pendingFlags = PendingIntent.FLAG_MUTABLE;
     } else {
       pendingFlags = 0;
     }
