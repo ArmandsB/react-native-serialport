@@ -1,6 +1,11 @@
-import { NativeModules } from 'react-native';
+// index.js
+import { NativeModules, Platform } from 'react-native';
 
-const { RNSerialport } = NativeModules;
+// === Native module (TurboModule) ===
+const RNSerialport = Platform.select({
+  android: NativeModules.RNSerialport,
+  default: {}, // iOS dummy
+});
 
 const definitions = {
   DATA_BITS :{
@@ -52,22 +57,9 @@ const actions = {
   ON_READ_DATA            : 'onReadDataFromPort'
 };
 
-if (RNSerialport) {
-  RNSerialport.intArrayToUtf16 = (intArray) => {
-    var str = "";
-    for (var i = 0; i < intArray.length; i++) {
-      str += String.fromCharCode(intArray[i]);
-    }
-    return str;
-  }
-  RNSerialport.hexToUtf16 = (hex) => {
-    var str = "";
-    var radix = 16;
-    for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
-      str += String.fromCharCode(parseInt(hex.substr(i, 2), radix));
-    }
-    return str;
-  }
-}
-
-module.exports = { RNSerialport, definitions, actions };
+// === Export everything (exact same as original) ===
+export {
+  RNSerialport,
+  definitions,
+  actions
+};

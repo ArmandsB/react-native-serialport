@@ -1,29 +1,41 @@
-
 package com.melihyarikkaya.rnserialport;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import com.facebook.react.ReactPackage;
+import com.facebook.react.BaseReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.uimanager.ViewManager;
-import com.facebook.react.bridge.JavaScriptModule;
+import com.facebook.react.module.model.ReactModuleInfo;
+import com.facebook.react.module.model.ReactModuleInfoProvider;
 
-public class RNSerialportPackage implements ReactPackage {
-    @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNSerialportModule(reactContext));
-    }
+import java.util.HashMap;
+import java.util.Map;
 
-    // Deprecated from RN 0.47
-    public List<Class<? extends JavaScriptModule>> createJSModules() {
-      return Collections.emptyList();
-    }
+public class RNSerialportPackage extends BaseReactPackage {
 
     @Override
-    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+    public NativeModule getModule(String name, ReactApplicationContext reactContext) {
+        if (name.equals(RNSerialportModule.NAME)) {
+            return new RNSerialportModule(reactContext);
+        }
+        return null;
+    }
+
+    @Override
+    public ReactModuleInfoProvider getReactModuleInfoProvider() {
+        return () -> {
+            Map<String, ReactModuleInfo> map = new HashMap<>();
+            map.put(
+                RNSerialportModule.NAME,
+                new ReactModuleInfo(
+                    RNSerialportModule.NAME, // JS module name
+                    RNSerialportModule.NAME, // class name
+                    false, // canOverrideExistingModule
+                    false, // needsEagerInit
+                    false, // hasConstants — set to false if you don’t implement getConstants
+                    false, // isCxxModule
+                    true   // isTurboModule
+                )
+            );
+            return map;
+        };
     }
 }

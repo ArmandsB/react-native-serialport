@@ -1,3 +1,12 @@
+// types/index.d.ts
+import type { Spec } from '../specs/NativeRNSerialport';
+
+// === Native module with helpers ===
+declare const RNSerialport: Spec & {
+  intArrayToUtf16: (arr: number[]) => string;
+  hexToUtf16: (hex: string) => string;
+};
+
 export interface IDevice {
   name: string;
   vendorId: number;
@@ -71,207 +80,12 @@ interface ActionsStatic {
 }
 export var actions: ActionsStatic;
 
-type DataBits = 5 | 6 | 7 | 8;
-type StopBits = 1 | 2 | 3;
-type Parities = 0 | 1 | 2 | 3 | 4;
-type FlowControls = 0 | 1 | 2 | 3;
-type ReturnedDataTypes = 1 | 2;
-type Drivers = "AUTO" | "cdc" | "ch34x" | "cp210x" | "ftdi" | "pl2303";
+export type DataBits = 5 | 6 | 7 | 8;
+export type StopBits = 1 | 2 | 3;
+export type Parities = 0 | 1 | 2 | 3 | 4;
+export type FlowControls = 0 | 1 | 2 | 3;
+export type ReturnedDataTypes = 1 | 2;
+export type Drivers = "AUTO" | "cdc" | "ch34x" | "cp210x" | "ftdi" | "pl2303";
 
-interface RNSerialportStatic {
-  /**
-   * Starts the service and Usb listener
-   *
-   * @memberof RNSerialportStatic
-   */
-  startUsbService(): void;
-  /**
-   * Stops the service and Usb listener
-   *
-   * @memberof RNSerialportStatic
-   */
-  stopUsbService(): void;
-
-  /**
-   * Returns status via Promise
-   *
-   * @returns {Promise<boolean>}
-   * @memberof RNSerialportStatic
-   */
-  isOpen(): Promise<boolean>
-
-  /**
-   * Returns status boolean via Promise
-   *
-   * @returns {Promise<boolean>}
-   * @memberof RNSerialportStatic
-   */
-  isServiceStarted(): Promise<boolean>
-
-  /**
-   * Returns support status
-   * 
-   * @param {string} deviceName
-   * @returns {Promise<boolean>}
-   * @memberof RNSerialportStatic
-   */
-  isSupported(deviceName: string): Promise<boolean>;
-
-  //Begin setter methods
-
-  /**
-   * Set the returned data type
-   *
-   * @param {ReturnedDataTypes} type
-   * @memberof RNSerialportStatic
-   */
-  setReturnedDataType(type: ReturnedDataTypes): void;
-
-  /**
-   * Set the interface
-   *
-   * @param {number} iFace
-   * @memberof RNSerialportStatic
-   */
-  setInterface(iFace: number): void;
-
-  /**
-   * Set the data bit
-   *
-   * @param {DataBits} bit
-   * @memberof RNSerialportStatic
-   */
-  setDataBit(bit: DataBits): void;
-
-  /**
-   * Set the stop bit
-   *
-   * @param {StopBits} bit
-   * @memberof RNSerialportStatic
-   */
-  setStopBit(bit: StopBits): void;
-
-  /**
-   * Set the parity
-   *
-   * @param {Parities} parity
-   * @memberof RNSerialportStatic
-   */
-  setParity(parity: Parities): void;
-
-  /**
-   *  Set the flow control
-   *
-   * @param {FlowControls} control
-   * @memberof RNSerialportStatic
-   */
-  setFlowControl(control: FlowControls): void;
-
-  /**
-   * Set the auto connection baudrate
-   *
-   * @param {number} baudRate
-   * @memberof RNSerialportStatic
-   */
-  setAutoConnectBaudRate(baudRate: number): void;
-
-  /**
-   * Set the auto connection status
-   *
-   * @param {boolean} status
-   * @memberof RNSerialportStatic
-   */
-  setAutoConnect(status: boolean): void;
-
-  /**
-   * Set the driver type
-   *
-   * @param {Drivers} driver
-   * @memberof RNSerialportStatic
-   */
-  setDriver(driver: Drivers): void;
-
-  //End setter methods
-
-  /**
-   * Load the default connection settings
-   *
-   * @memberof RNSerialportStatic
-   */
-  loadDefaultConnectionSetting(): void;
-
-  /**
-   * Returns the device list via Promise
-   *
-   * @returns {Promise<Device>}
-   * @memberof RNSerialportStatic
-   */
-  getDeviceList(): Promise<Devices>;
-
-  /**
-   * Connect to device with device name and baud rate
-   *
-   * @param {string} deviceName
-   * @param {number} baudRate
-   * @memberof RNSerialportStatic
-   */
-  connectDevice(deviceName: string, baudRate: number): void;
-
-  /**
-   * Closes the connection
-   *
-   * @memberof RNSerialportStatic
-   */
-  disconnect(): void;
-
-  /**
-   * Writes string to port
-   *
-   * @param {string} data
-   * @memberof RNSerialportStatic
-   */
-  writeString(data: string): void;
-
-  /**
-   * Writes Base64 string to port
-   *
-   * @param {string} data
-   * @memberof RNSerialportStatic
-   */
-  writeBase64(data: string): void;
-
-  /**
-   * Writes hex string to port
-   *
-   * @param {string} data
-   * @memberof RNSerialportStatic
-   */
-  writeHexString(data: string): void
-
-  /**
-   * Integer array convert to Utf16 string
-   *
-   * @param {Array<number>} intArray
-   * @returns {string}
-   * @memberof RNSerialportStatic
-   */
-  intArrayToUtf16(intArray: Array<number>): string
-
-  /**
-   * Hex string convert to Utf16 string
-   *
-   * @param {string} hex
-   * @returns {string}
-   * @memberof RNSerialportStatic
-   */
-  hexToUtf16(hex: string): string
-
-  /**
-   * Set read buffer size
-   *
-   * @param {number} bufferSize
-   * @memberof RNSerialportStatic
-   */
-   setReadBufferSize(bufferSize: number): void;
-}
-export var RNSerialport: RNSerialportStatic;
+// === Default export ===
+export { RNSerialport };
